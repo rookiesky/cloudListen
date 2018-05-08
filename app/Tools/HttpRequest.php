@@ -30,9 +30,15 @@ class HttpRequest
      */
     public function responseJson(array $data)
     {
-        $response = new JsonResponse();
-        $response->setData($data);
-        $response->send();
+//        $response = new JsonResponse();
+//        $response->setData($data);
+//        $response->send();
+
+        //$header = 'HTTP/1.0 200 OK';
+         header('HTTP/1.0 200 OK', true, 200);
+         header('Content-type: application/json');
+        echo json_encode($data);
+
     }
 
 }
