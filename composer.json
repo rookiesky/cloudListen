@@ -1,0 +1,28 @@
+{
+    "name": "rookiesky/voiceuploadcloud",
+    "description": "中文转语音",
+    "keywords": ["php", "voice"],
+    "license": "MIT",
+    "type": "php",
+    "authors": [
+        {
+            "name": "rookiesky",
+            "email": "1332305055@qq.com"
+        }
+    ],
+    "require": {
+        "filp/whoops":"*",
+        "rookiesky/uploadcloud":"v0.1",
+        "rookiesky/voiceclude":"v0.12",
+        "vlucas/phpdotenv": "^2.4",
+        "symfony/http-foundation": "^4.0"
+    },
+    "require-dev":{
+        "symfony/var-dumper":"*"
+    },
+    "autoload":{
+        "psr-4":{
+            "App\\":"app/"
+        }
+    }
+}

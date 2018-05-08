@@ -1,0 +1,14 @@
+{
+    "name": "rookiesky/uploadcloud",
+    "description": "一个对接云存储的上传类库.",
+    "keywords": ["upload", "qiniu"],
+    "require": {
+        "php": ">=5.6.4",
+        "qiniu/php-sdk": "^7.2"
+    },
+    "autoload":{
+        "psr-4":{
+            "Rookie\\Cloud\\":"src/"
+        }
+    }
+}
