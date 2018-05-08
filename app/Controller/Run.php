@@ -16,9 +16,7 @@ class Run extends Controller
 {
     public function run()
     {
-
-        echo $rootpath = str_replace('\\','/',realpath(dirname(__FILE__).'/'));die;
-
+        echo ROOT_PATH;die;
         $request = new Request();
         $string = $request->request();
 
