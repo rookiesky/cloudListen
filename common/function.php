@@ -77,3 +77,11 @@ if (!function_exists('abort')) {
     }
 }
 
+if (!function_exists('getConfig')) {
+
+    function getConfig(string $fileName){
+       // $file = ''
+    }
+
+}
+

@@ -2,7 +2,6 @@
 
 namespace App\Tools;
 
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class HttpRequest
@@ -30,15 +29,10 @@ class HttpRequest
      */
     public function responseJson(array $data)
     {
-//        $response = new JsonResponse();
-//        $response->setData($data);
-//        $response->send();
-
-        //$header = 'HTTP/1.0 200 OK';
          header('HTTP/1.0 200 OK', true, 200);
          header('Content-type: application/json');
-        echo json_encode($data);
-
+        echo json_encode($data,JSON_UNESCAPED_UNICODE);
+        exit();
     }
 
 }
