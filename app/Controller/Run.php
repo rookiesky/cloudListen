@@ -36,7 +36,12 @@ class Run extends Controller
 
         //$file = ROOT_PATH . DIRECTORY_SEPARATOR . 'README.md';
 
-        dd($upload->join()->delete('readme.md'));
+        $files = [
+            '2018-05/1525758528.wav',
+            'ok.wav'
+        ];
+
+        dd($upload->join()->buildBatchDelete($files));
 
     }
 

@@ -63,12 +63,25 @@ class Upload implements UploadInterface
            $filePath
        );
     }
+
+    /**
+     * 删除文件
+     * @param string $fileName
+     * @return mixed 成功返回null,失败返回错误信息
+     */
     public function delete(string $fileName)
     {
         return $this->bucketManager($this->auth(),$this->config())
             ->delete($this->bucket,$fileName);
     }
 
+    public function buildBatchDelete(array $files)
+    {
+        $bucketManager = $this->bucketManager($this->auth(),$this->config());
+        $ops = $bucketManager->buildBatchDelete($this->bucket,$files);
+        return $bucketManager->batch($ops);
+
+    }
 
     private function bucketManager($auth,$config = null)
     {
@@ -95,7 +108,6 @@ class Upload implements UploadInterface
     private function auth()
     {
         $auth = new Auth();
-
         return $auth->init($this->accesskey,$this->secretkey);
     }
 

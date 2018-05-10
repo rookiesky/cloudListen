@@ -27,6 +27,13 @@ interface UploadInterface
      * @return array
      */
     public function upload(string $fileName,string $filePath);
-    //删除文件
+
+    /**
+     * 删除单个文件
+     * @param string $fileName
+     * @return mixed 成功返回NULL，失败返回错误信息
+     */
     public function delete(string $fileName);
+
+    public function buildBatchDelete(array $files);
 }
