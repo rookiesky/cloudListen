@@ -12,10 +12,21 @@ namespace Rookie\Cloud;
 
 interface UploadInterface
 {
-    //对象上传
+    /**
+     * 上传对象
+     * @param array|string|object|json $data 对象数据
+     * @param string $fileName 文件名称
+     * @return array
+     */
     public function put($data,$fileName = null);
-    //上传文件
+
+    /**
+     * 上传文件
+     * @param string $fileName 云端文件名称
+     * @param string $filePath 上传文件路径
+     * @return array
+     */
     public function upload(string $fileName,string $filePath);
     //删除文件
-    public function delete();
+    public function delete(string $fileName);
 }

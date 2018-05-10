@@ -10,6 +10,8 @@
 namespace Rookie\Cloud\Qiniu;
 
 
+use Qiniu\Config;
+use Qiniu\Storage\BucketManager;
 use Qiniu\Storage\UploadManager;
 use Rookie\Cloud\UploadInterface;
 
@@ -61,12 +63,26 @@ class Upload implements UploadInterface
            $filePath
        );
     }
-    public function delete()
+    public function delete(string $fileName)
     {
-        // TODO: Implement delete() method.
+        return $this->bucketManager($this->auth(),$this->config())
+            ->delete($this->bucket,$fileName);
     }
 
 
+    private function bucketManager($auth,$config = null)
+    {
+        return new BucketManager($auth,$config);
+    }
+
+    private function config(){
+        return new Config();
+    }
+
+    /**
+     * 上传控制
+     * @return UploadManager
+     */
     private function uploadManager()
     {
         return new UploadManager();
