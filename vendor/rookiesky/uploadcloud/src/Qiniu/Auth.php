@@ -1,66 +1,31 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: rookie
+ * Url : PTP6.Com
+ * Date: 2018/5/10
+ * Time: 20:50
+ */
 
 namespace Rookie\Cloud\Qiniu;
 
-use Qiniu\Auth as SdkAuth;
-use Qiniu\Config;
-use Qiniu\Storage\BucketManager;
 
 class Auth
 {
+    private $bucket = null;
+    private static $auth = null;
 
-    private static $backetName = '';
-    private $accesskey = null;
-    private $secretkey = null;
-
-    public function __construct($accesskey,$secretkey,$backetName)
+    public function __construct($accesskey,$secretkey)
     {
-
-        self::$backetName = $backetName;
-
-        $this->accesskey = $accesskey;
-        $this->secretkey = $secretkey;
-
-    }
-
-    /**
-     * 鉴权对象
-     * @return SdkAuth
-     */
-    public function newAuth()
-    {
-       return new SdkAuth($this->accesskey,$this->secretkey);
-    }
-    /**
-     * 上传令牌
-     * @return string
-     */
-    public function uploadToken()
-    {
-        return $this->newAuth()->uploadToken(self::$backetName);
-    }
-
-    /**
-     * @return Config
-     */
-    public static function config()
-    {
-        return new Config();
-    }
-
-    /**
-     * 实例化区块对象
-     * @param  bool $config
-     * @return BucketManager
-     */
-    public function getBucketManager($config = false)
-    {
-
-        if ($config == false) {
-            return new BucketManager($this->newAuth());
+        if (self::$auth == null) {
+            self::$auth = new \Qiniu\Auth($accesskey,$secretkey);
         }
+    }
 
-        return new BucketManager($this->newAuth(),$this->config());
+    public function token($bukcet)
+    {
+        $token = self::$auth->uploadToken($bukcet);
+        dd($token);
     }
 
 }

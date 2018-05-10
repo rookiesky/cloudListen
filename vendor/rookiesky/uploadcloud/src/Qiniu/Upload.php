@@ -1,56 +1,53 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: rookie
+ * Url : PTP6.Com
+ * Date: 2018/5/10
+ * Time: 19:26
+ */
 
 namespace Rookie\Cloud\Qiniu;
 
 
-use Qiniu\Storage\UploadManager;
+use Rookie\Cloud\UploadInterface;
 
-class Upload
+class Upload implements UploadInterface
 {
 
-    public $errorMsg;  //错误信息
+    private $accesskey = null;
+    private $secretkey = null;
+    private $bucket = null;
 
-    /**
-     * 上传文件
-     * @param string $token 上传令牌
-     * @param string $file 文件路径
-     * @param string $cloudFileName 重命名
-     * @return bool|array
-     */
-    public function uploadFile($token,$file,$cloudFileName)
+    public function __construct($accesskey,$secretkey,$bucket)
     {
-        list($ret,$err) = $this->uploadManager()->putFile($token,$cloudFileName,$file);
-        if($err != null){
-            $this->errorMsg = $err;
-            return false;
-        }
-        return $ret;
+        $this->accesskey = $accesskey;
+        $this->secretkey = $secretkey;
+        $this->bucket = $bucket;
+    }
+
+
+    public function put()
+    {
+        $this->auth()->token($this->bucket);
+        // TODO: Implement put() method.
+    }
+    public function upload()
+    {
+        // TODO: Implement upload() method.
+    }
+    public function delete()
+    {
+        // TODO: Implement delete() method.
     }
 
     /**
-     * 上传对象
-     * @param string $token  上传令牌
-     * @param string $fileName 文件名称
-     * @param string|array|object $data
-     * @param string $mime 文件mimeType
-     * @return bool|array
+     * 鉴权
+     * @return Auth
      */
-    public function put($token,$fileName,$data,$mime)
+    private function auth()
     {
-
-        list($ret, $err) = $this->uploadManager()->put($token, $fileName, $data,null,$mime);
-
-        if($err != null){
-            $this->errorMsg = $err;
-            return false;
-        }
-        return $ret;
+        return new Auth($this->accesskey,$this->secretkey);
     }
-
-    private function uploadManager()
-    {
-        return new UploadManager();
-    }
-
 
 }

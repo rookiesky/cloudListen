@@ -1,13 +1,17 @@
 {
     "name": "rookiesky/voiceclude",
     "description": "中文转语音",
-    "keywords": ["php", "voice"],
     "license": "MIT",
-    "type": "php",
+    "authors": [
+        {
+            "name": "rookiesky",
+            "email": "1332305055@qq.com"
+        }
+    ],
     "require": {},
     "autoload":{
         "psr-4":{
-            "RookieVoice\\":"src/"
+            "Rookie\\Voice\\":"src/"
         }
     }
 }

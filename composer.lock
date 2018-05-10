@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e0cbac8ea0782e8ccab16e9e8181fe4d",
+    "content-hash": "6383adfaffc441dd89c468de3173ca3e",
     "packages": [
         {
             "name": "filp/whoops",
@@ -116,16 +116,16 @@
         },
         {
             "name": "qiniu/php-sdk",
-            "version": "v7.2.3",
+            "version": "v7.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/qiniu/php-sdk.git",
-                "reference": "67852ba9cdd7f48e0e080961abebafee134fb329"
+                "reference": "e5605b20aa4cab7d7ad38c2a510e7086d0d85534"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/qiniu/php-sdk/67852ba9cdd7f48e0e080961abebafee134fb329.zip",
-                "reference": "67852ba9cdd7f48e0e080961abebafee134fb329",
+                "url": "https://files.phpcomposer.com/files/qiniu/php-sdk/e5605b20aa4cab7d7ad38c2a510e7086d0d85534.zip",
+                "reference": "e5605b20aa4cab7d7ad38c2a510e7086d0d85534",
                 "shasum": ""
             },
             "require": {
@@ -163,7 +163,7 @@
                 "sdk",
                 "storage"
             ],
-            "time": "2018-02-20T13:59:54+00:00"
+            "time": "2018-05-09T08:33:46+00:00"
         },
         {
             "name": "rookiesky/uploadcloud",
@@ -199,34 +199,36 @@
         },
         {
             "name": "rookiesky/voiceclude",
-            "version": "v0.12",
+            "version": "0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rookiesky/voiceclude.git",
-                "reference": "8243f389de8be88694747e714b01140222943e08"
+                "reference": "7dbb7fc9c7e80a9a41b161408df766a7773428eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/rookiesky/voiceclude/8243f389de8be88694747e714b01140222943e08.zip",
-                "reference": "8243f389de8be88694747e714b01140222943e08",
+                "url": "https://files.phpcomposer.com/files/rookiesky/voiceclude/7dbb7fc9c7e80a9a41b161408df766a7773428eb.zip",
+                "reference": "7dbb7fc9c7e80a9a41b161408df766a7773428eb",
                 "shasum": ""
             },
-            "type": "php",
+            "type": "library",
             "autoload": {
                 "psr-4": {
-                    "RookieVoice\\": "src/"
+                    "Rookie\\Voice\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
-            "description": "中文转语音",
-            "keywords": [
-                "php",
-                "voice"
+            "authors": [
+                {
+                    "name": "rookiesky",
+                    "email": "1332305055@qq.com"
+                }
             ],
-            "time": "2018-05-07T09:28:02+00:00"
+            "description": "中文转语音",
+            "time": "2018-05-09T13:44:34+00:00"
         },
         {
             "name": "symfony/http-foundation",

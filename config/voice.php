@@ -1,5 +1,5 @@
 <?php
 return array(
-    'APPID' => getenv('XUNFEI_APPID'),
-    'APIKEY' => getenv('XUNFEI_AOIKEY')
+    'APPID' => env('BAIDU_APPKEY'),
+    'APIKEY' => env('BAIDU_SECRETKEY'),
 );

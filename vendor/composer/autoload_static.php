@@ -27,8 +27,8 @@ class ComposerStaticInita79564d1c577bdb210d5ff321ec68ba2
         ),
         'R' => 
         array (
+            'Rookie\\Voice\\' => 13,
             'Rookie\\Cloud\\' => 13,
-            'RookieVoice\\' => 12,
         ),
         'Q' => 
         array (
@@ -69,13 +69,13 @@ class ComposerStaticInita79564d1c577bdb210d5ff321ec68ba2
         array (
             0 => __DIR__ . '/..' . '/symfony/http-foundation',
         ),
+        'Rookie\\Voice\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rookiesky/voiceclude/src',
+        ),
         'Rookie\\Cloud\\' => 
         array (
             0 => __DIR__ . '/..' . '/rookiesky/uploadcloud/src',
-        ),
-        'RookieVoice\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/rookiesky/voiceclude/src',
         ),
         'Qiniu\\' => 
         array (

@@ -113,17 +113,17 @@
     },
     {
         "name": "qiniu/php-sdk",
-        "version": "v7.2.3",
-        "version_normalized": "7.2.3.0",
+        "version": "v7.2.4",
+        "version_normalized": "7.2.4.0",
         "source": {
             "type": "git",
             "url": "https://github.com/qiniu/php-sdk.git",
-            "reference": "67852ba9cdd7f48e0e080961abebafee134fb329"
+            "reference": "e5605b20aa4cab7d7ad38c2a510e7086d0d85534"
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/qiniu/php-sdk/67852ba9cdd7f48e0e080961abebafee134fb329.zip",
-            "reference": "67852ba9cdd7f48e0e080961abebafee134fb329",
+            "url": "https://files.phpcomposer.com/files/qiniu/php-sdk/e5605b20aa4cab7d7ad38c2a510e7086d0d85534.zip",
+            "reference": "e5605b20aa4cab7d7ad38c2a510e7086d0d85534",
             "shasum": ""
         },
         "require": {
@@ -133,7 +133,7 @@
             "phpunit/phpunit": "~4.0",
             "squizlabs/php_codesniffer": "~2.3"
         },
-        "time": "2018-02-20T13:59:54+00:00",
+        "time": "2018-05-09T08:33:46+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -200,36 +200,38 @@
     },
     {
         "name": "rookiesky/voiceclude",
-        "version": "v0.12",
-        "version_normalized": "0.12.0.0",
+        "version": "0.5",
+        "version_normalized": "0.5.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/rookiesky/voiceclude.git",
-            "reference": "8243f389de8be88694747e714b01140222943e08"
+            "reference": "7dbb7fc9c7e80a9a41b161408df766a7773428eb"
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/rookiesky/voiceclude/8243f389de8be88694747e714b01140222943e08.zip",
-            "reference": "8243f389de8be88694747e714b01140222943e08",
+            "url": "https://files.phpcomposer.com/files/rookiesky/voiceclude/7dbb7fc9c7e80a9a41b161408df766a7773428eb.zip",
+            "reference": "7dbb7fc9c7e80a9a41b161408df766a7773428eb",
             "shasum": ""
         },
-        "time": "2018-05-07T09:28:02+00:00",
-        "type": "php",
+        "time": "2018-05-09T13:44:34+00:00",
+        "type": "library",
         "installation-source": "dist",
         "autoload": {
             "psr-4": {
-                "RookieVoice\\": "src/"
+                "Rookie\\Voice\\": "src/"
             }
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
             "MIT"
         ],
-        "description": "中文转语音",
-        "keywords": [
-            "php",
-            "voice"
-        ]
+        "authors": [
+            {
+                "name": "rookiesky",
+                "email": "1332305055@qq.com"
+            }
+        ],
+        "description": "中文转语音"
     },
     {
         "name": "symfony/http-foundation",

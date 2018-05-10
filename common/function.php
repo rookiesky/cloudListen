@@ -78,10 +78,37 @@ if (!function_exists('abort')) {
 }
 
 if (!function_exists('getConfig')) {
-
+    /**
+     * 获取配置文件
+     * @param string $fileName
+     * @return bool|mixed
+     */
     function getConfig(string $fileName){
-       // $file = ''
+        $file = ROOT_PATH . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR .$fileName . '.php';
+
+        if (!is_file($file)) {
+            return false;
+        }
+        return require_once $file;
     }
 
+}
+
+if(!function_exists('env')){
+    /**
+     * 获取env文件
+     * @param string $key
+     * @param null $default
+     * @return array|false|null|string
+     */
+    function env($key,$default = null){
+
+        $value = getenv($key);
+
+        if ($value == '' && $default != null) {
+            $value = $default;
+        }
+        return $value;
+    }
 }
 
