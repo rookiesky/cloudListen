@@ -40,7 +40,7 @@ class Upload implements UploadInterface
     {
          return $this->uploadManager()
             ->put(
-                $this->auth()->token($this->bucket),
+                $this->token(),
                 $fileName,
                 $data,
                 null,
@@ -58,10 +58,10 @@ class Upload implements UploadInterface
     {
        return $this->uploadManager()
            ->putFile(
-           $this->auth()->token($this->bucket),
-           $fileName,
-           $filePath
-       );
+               $this->token(),
+               $fileName,
+               $filePath
+            );
     }
 
     /**
@@ -71,7 +71,7 @@ class Upload implements UploadInterface
      */
     public function delete(string $fileName)
     {
-        return $this->bucketManager($this->auth(),$this->config())
+        return $this->bucketManager($this->Auth(),$this->config())
             ->delete($this->bucket,$fileName);
     }
 
@@ -82,7 +82,7 @@ class Upload implements UploadInterface
      */
     public function buildBatchDelete(array $files)
     {
-        $bucketManager = $this->bucketManager($this->auth(),$this->config());
+        $bucketManager = $this->bucketManager($this->Auth(),$this->config());
         $ops = $bucketManager->buildBatchDelete($this->bucket,$files);
         return $bucketManager->batch($ops);
 
@@ -110,10 +110,13 @@ class Upload implements UploadInterface
      * 鉴权
      * @return Auth
      */
-    private function auth()
+    private function Auth()
     {
-        $auth = new Auth();
-        return $auth->init($this->accesskey,$this->secretkey);
+        return new \Qiniu\Auth($this->accesskey,$this->secretkey);
     }
 
+    private function token()
+    {
+        return $this->Auth()->uploadToken($this->bucket);
+    }
 }
