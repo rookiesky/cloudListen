@@ -32,7 +32,7 @@ class Upload implements UploadInterface
      * @param array|string|json|object $data 文件数据
      * @param string $fileName  文件重命名
      * @param string $mime mimetype
-     * @return array
+     * @return array [$ret,$error = null]
      */
     public function put($data,$fileName = null,$mime = 'application/octet-stream')
     {
@@ -45,9 +45,21 @@ class Upload implements UploadInterface
                 $mime
             );
     }
-    public function upload()
+
+    /**
+     * 上传文件
+     * @param string $fileName
+     * @param string $filePath 文件路劲
+     * @return array [$ret,$error = null]
+     */
+    public function upload(string $fileName,string $filePath)
     {
-        // TODO: Implement upload() method.
+       return $this->uploadManager()
+           ->putFile(
+           $this->auth()->token($this->bucket),
+           $fileName,
+           $filePath
+       );
     }
     public function delete()
     {
