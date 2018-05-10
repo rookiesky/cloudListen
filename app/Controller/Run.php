@@ -34,7 +34,7 @@ class Run extends Controller
 
         $upload = new CloudUpload();
 
-        $file = ROOT_PATH . 'README.md';
+        $file = ROOT_PATH . DIRECTORY_SEPARATOR . 'README.md';
 
         dd($upload->join()->upload('readme.md',$file));
 
