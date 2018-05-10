@@ -94,7 +94,9 @@ class Upload implements UploadInterface
      */
     private function auth()
     {
-        return new Auth($this->accesskey,$this->secretkey);
+        $auth = new Auth();
+
+        return $auth->init($this->accesskey,$this->secretkey);
     }
 
 }

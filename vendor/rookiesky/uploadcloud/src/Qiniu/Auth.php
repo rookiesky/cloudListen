@@ -15,11 +15,13 @@ class Auth
     private $bucket = null;
     private static $auth = null;
 
-    public function __construct($accesskey,$secretkey)
+
+    public function init($accesskey,$secretkey)
     {
         if (self::$auth == null) {
             self::$auth = new \Qiniu\Auth($accesskey,$secretkey);
         }
+        return self::$auth;
     }
 
     /**
