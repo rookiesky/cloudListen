@@ -15,7 +15,7 @@ interface UploadInterface
     //对象上传
     public function put($data,$fileName = null);
     //上传文件
-    public function upload();
+    public function upload(string $fileName,string $filePath);
     //删除文件
     public function delete();
 }
