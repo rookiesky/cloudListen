@@ -28,20 +28,11 @@ class Run extends Controller
 //            return $this->putMsg(001,$string[1]);
 //        }
 
-       //$voice = $this->voice($str);
+        $voice = $this->voice($str);
 
-        //$data = $this->cloudUpload($voice);
+        $data = $this->upload($voice);
 
-        $upload = new CloudUpload();
-
-        //$file = ROOT_PATH . DIRECTORY_SEPARATOR . 'README.md';
-
-        $files = [
-            '2018-05/1525758528.wav',
-            'ok.wav'
-        ];
-
-        dd($upload->join()->buildBatchDelete($files));
+        dd($data);
 
     }
 
@@ -65,47 +56,40 @@ class Run extends Controller
      * @param $data
      * @return json|array
      */
-    private function cloudUpload($data)
+    private function upload($data)
     {
-        $upload = new CloudUpload();
+
         $mp = [];   //记录云存储名称
         $resultData = [];
-
-        $suffix = '.mp3';
-
-        $prefix = date('Y-m') . '/';
 
         if (isset($data[0]) && !empty($data[1])) {
 
             foreach ($data as $key=>$val){
 
-                $fielName = $prefix . uniqid() . '_' . $key . $suffix;
-                $tmp = $upload->put($fielName,$val['voice']);
+                list($ret,$err) = $this->put($val['voice']);
 
-                if ($tmp === false) {
+                if ($err !== null) {
                     if(count($mp) >= 1){
-                        $upload->buiBatchDelete($mp);
-                        return $this->putMsg(003,$upload->errorMsg);
+                        $this->CloudUpload()->buildBatchDelete($mp);
+                        return $this->putMsg(003,$err);
                     }
                 }
 
-                $mp[] = $tmp['key'];
+                $mp[] = $ret['key'];
+
                 $resultData[$key] = [
-                    'key' => $tmp['key'],
+                    'key' => $ret['key'],
                     'text' => $val['text'],
                     'length' => $val['length']
                 ];
+
             }
         }else{
 
-            $filename = $prefix . uniqid() . $suffix;
-            $upload = new CloudUpload();
-
-            list($ret,$err) = $upload->join()->put($data['voice'],$filename,'audio/mpeg');
+            list($ret,$err) = $this->put($data['voice']);
 
             if ($err !== null) {
-                dd($err);
-                return $this->putMsg(003,$upload->errorMsg);
+                return $this->putMsg(003,$err);
             }
 
             $resultData = [
@@ -117,6 +101,30 @@ class Run extends Controller
         }
 
         return $resultData;
+    }
+
+    /**
+     * 上传
+     * @param $data
+     * @param string $fileName
+     * @param string $mime
+     * @param string $suffix
+     * @return array
+     */
+    private function put($data,$fileName = '',$mime = 'audio/mpeg',$suffix = '.mp3')
+    {
+
+        if ($fileName == '') {
+            $fileName = date('Y-m') . '/' . uniqid() . $suffix;
+        }
+
+        return $this->CloudUpload()->put($data['voice'],$fileName,$mime);
+    }
+
+    private function CloudUpload()
+    {
+        $join = new CloudUpload();
+        return $join->join();
     }
 
 }

@@ -16,13 +16,10 @@ $uplod->upload($file,$newFileName); //$fiel 文件地址，绝对路劲 $newFile
 //删除单个文件
 $upload->delete($fileName);  //$fileName 文件名称
 
-//获取指定前缀文件
-$upload->getPrefixFile('前缀名称');
-
 //批量删除文件
 $upload->buiBatchDelete(array());
 
 //上传对象
-$upload->put('文件重命名',文件数据,'文件类型');
+$upload->put('文件数据',文件重命名','文件类型');
 
 ````

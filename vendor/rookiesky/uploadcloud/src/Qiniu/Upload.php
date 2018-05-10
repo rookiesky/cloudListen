@@ -75,6 +75,11 @@ class Upload implements UploadInterface
             ->delete($this->bucket,$fileName);
     }
 
+    /**
+     * 批量删除文件
+     * @param array $files 文件数组
+     * @return array [$ret,$err] 执行成功$err为空
+     */
     public function buildBatchDelete(array $files)
     {
         $bucketManager = $this->bucketManager($this->auth(),$this->config());
