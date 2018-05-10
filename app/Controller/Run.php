@@ -32,6 +32,7 @@ class Run extends Controller
 
         $data = $this->cloudUpload($voice);
 
+        dd($data);
 
     }
 
@@ -91,15 +92,15 @@ class Run extends Controller
             $filename = $prefix . uniqid() . $suffix;
             $upload = new CloudUpload();
 
-            //dd($upload->join()->put());
-            $tmp = $upload->join()->put($data['voice'],$filename,'audio/mpeg');
-            dd($tmp);
-            if ($tmp == false) {
+            list($ret,$err) = $upload->join()->put($data['voice'],$filename,'audio/mpeg');
+
+            if ($err !== null) {
+                dd($err);
                 return $this->putMsg(003,$upload->errorMsg);
             }
 
             $resultData = [
-                'key' => $tmp['key'],
+                'key' => $ret['key'],
                 'text' => $data['text'],
                 'length' => $data['length']
             ];
