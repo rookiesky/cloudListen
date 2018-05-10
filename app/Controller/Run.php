@@ -118,7 +118,7 @@ class Run extends Controller
             $fileName = date('Y-m') . '/' . uniqid() . $suffix;
         }
 
-        return $this->CloudUpload()->put($data['voice'],$fileName,$mime);
+        return $this->CloudUpload()->put($data,$fileName,$mime);
     }
 
     private function CloudUpload()
