@@ -28,13 +28,11 @@ class Run extends Controller
 //            return $this->putMsg(001,$string[1]);
 //        }
 
-       // $voice = $this->voice($str);
+       $voice = $this->voice($str);
 
-        //$data = $this->cloudUpload($voice);
+        $data = $this->cloudUpload($voice);
 
-        $upload = new CloudUpload();
 
-        dd($upload->join()->put());
     }
 
     /**
@@ -91,8 +89,11 @@ class Run extends Controller
         }else{
 
             $filename = $prefix . uniqid() . $suffix;
-            $tmp = $upload->put($filename,$data['voice']);
+            $upload = new CloudUpload();
 
+            //dd($upload->join()->put());
+            $tmp = $upload->join()->put($data['voice'],$filename,'audio/mpeg');
+            dd($tmp);
             if ($tmp == false) {
                 return $this->putMsg(003,$upload->errorMsg);
             }

@@ -22,10 +22,14 @@ class Auth
         }
     }
 
+    /**
+     * 上传令牌
+     * @param string $bukcet 包名称
+     * @return string
+     */
     public function token($bukcet)
     {
-        $token = self::$auth->uploadToken($bukcet);
-        dd($token);
+        return self::$auth->uploadToken($bukcet);
     }
 
 }

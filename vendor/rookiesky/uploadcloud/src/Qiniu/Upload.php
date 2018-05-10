@@ -10,6 +10,7 @@
 namespace Rookie\Cloud\Qiniu;
 
 
+use Qiniu\Storage\UploadManager;
 use Rookie\Cloud\UploadInterface;
 
 class Upload implements UploadInterface
@@ -26,11 +27,23 @@ class Upload implements UploadInterface
         $this->bucket = $bucket;
     }
 
-
-    public function put()
+    /**
+     * 上传对象
+     * @param array|string|json|object $data 文件数据
+     * @param string $fileName  文件重命名
+     * @param string $mime mimetype
+     * @return array
+     */
+    public function put($data,$fileName = null,$mime = 'application/octet-stream')
     {
-        $this->auth()->token($this->bucket);
-        // TODO: Implement put() method.
+         return $this->uploadManager()
+            ->put(
+                $this->auth()->token($this->bucket),
+                $fileName,
+                $data,
+                null,
+                $mime
+            );
     }
     public function upload()
     {
@@ -39,6 +52,12 @@ class Upload implements UploadInterface
     public function delete()
     {
         // TODO: Implement delete() method.
+    }
+
+
+    private function uploadManager()
+    {
+        return new UploadManager();
     }
 
     /**

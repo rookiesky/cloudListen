@@ -13,7 +13,7 @@ namespace Rookie\Cloud;
 interface UploadInterface
 {
     //对象上传
-    public function put();
+    public function put($data,$fileName = null);
     //上传文件
     public function upload();
     //删除文件
