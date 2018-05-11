@@ -3,23 +3,26 @@
 namespace Rookie\Cloud;
 
 use Psr\Log\InvalidArgumentException;
-use Rookie\Cloud\Qiniu\Upload;
+use Rookie\Cloud\Aliyun\Upload as oss;
+use Rookie\Cloud\Qiniu\Upload as qiniu;
 
 class UploadFile
 {
-    const ENGINE_TYPE = ['qiniu'];
+    const ENGINE_TYPE = ['qiniu','oss'];
     //云端
     private $engine = '';
     private $accesskey = '';
     private $secretkey = '';
     private $bucket = '';  // 包名称
+    private $endpoint = '';
 
-    public function __construct($accesskey,$secretkey,$bucket,$engine = 'qiniu')
+    public function __construct($accesskey,$secretkey,$bucket,$endpoint = '',$engine = 'qiniu')
     {
         $this->accesskey = $accesskey;
         $this->secretkey = $secretkey;
         $this->bucket = $bucket;
         $this->engine = $engine;
+        $this->endpoint = $endpoint;
 
         $this->checkConfig();
 
@@ -32,7 +35,10 @@ class UploadFile
     public function uploadManager()
     {
         if ($this->engine == 'qiniu') {
-            return new Upload($this->accesskey,$this->secretkey,$this->bucket);
+            return new qiniu($this->accesskey,$this->secretkey,$this->bucket);
+        }
+        if ($this->endpoint == 'oss') {
+            return new oss($this->accesskey,$this->secretkey,$this->bucket,$this->endpoint);
         }
     }
 

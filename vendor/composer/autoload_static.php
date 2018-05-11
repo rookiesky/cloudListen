@@ -38,6 +38,10 @@ class ComposerStaticInita79564d1c577bdb210d5ff321ec68ba2
         array (
             'Psr\\Log\\' => 8,
         ),
+        'O' => 
+        array (
+            'OSS\\' => 4,
+        ),
         'D' => 
         array (
             'Dotenv\\' => 7,
@@ -84,6 +88,10 @@ class ComposerStaticInita79564d1c577bdb210d5ff321ec68ba2
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'OSS\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/aliyuncs/oss-sdk-php/src/OSS',
         ),
         'Dotenv\\' => 
         array (
