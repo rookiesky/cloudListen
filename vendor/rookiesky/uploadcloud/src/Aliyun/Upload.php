@@ -52,11 +52,29 @@ class Upload implements UploadInterface
         {
             $err = $e->getMessage();
         }
-        return [$ret,$err];
+        if ($err !== null) {
+            return [$ret,$err];
+        }
+
+        return $this->putMsg($ret['oss-request-url'],$ret['content-md5'],$err);
+
     }
     public function upload(string $fileName, string $filePath)
     {
-        // TODO: Implement upload() method.
+            $ret = null;
+            $err = null;
+
+            try{
+                $ret = $this->client()->uploadFile($this->bucket,$filePath,$fileName);
+            }catch(OssException $e)
+            {
+                $err = $e->getMessage();
+            }
+
+            if ($err !== null) {
+                dd($err);
+            }
+            dd($ret);
     }
     public function delete(string $fileName)
     {
@@ -65,6 +83,29 @@ class Upload implements UploadInterface
     public function buildBatchDelete(array $files)
     {
         // TODO: Implement buildBatchDelete() method.
+    }
+
+    /**
+     * 统一输出格式
+     * @param string $key
+     * @param $hash
+     * @param $err
+     * @return array
+     */
+    private function putMsg($key,$hash,$err)
+    {
+        return [
+            [
+                'key' => self::explodeName($key),
+                'hash' => $hash
+            ],
+            $err
+        ];
+    }
+    private static function explodeName($url)
+    {
+        $data = explode('/',$url);
+        return $data[3].'/'.$data[4];
     }
 
     /**

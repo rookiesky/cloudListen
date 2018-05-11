@@ -28,12 +28,17 @@ class Run extends Controller
 //            return $this->putMsg(001,$string[1]);
 //        }
 
-        $voice = $this->voice($str);
+//        $voice = $this->voice($str);
+//
+//        $data = $this->upload($voice);
+//        $stop = microtime(true);
+//        echo 'time:' . ($stop - $star) . "<hr />";
+//        dd($data);
 
-        $data = $this->upload($voice);
-        $stop = microtime(true);
-        echo 'time:' . ($stop - $star) . "<hr />";
-        dd($data);
+
+        $file = ROOT_PATH . DIRECTORY_SEPARATOR . 'README.md';
+        $this->CloudUpload()->upload('readme2.md',$file);
+
 
     }
 
