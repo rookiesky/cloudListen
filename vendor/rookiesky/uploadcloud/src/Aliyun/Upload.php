@@ -59,27 +59,49 @@ class Upload implements UploadInterface
         return $this->putMsg($ret['oss-request-url'],$ret['content-md5'],$err);
 
     }
+
+    /**
+     * 上传文件
+     * @param string $fileName
+     * @param string $filePath
+     * @return array
+     */
     public function upload(string $fileName, string $filePath)
     {
             $ret = null;
             $err = null;
 
             try{
-                $ret = $this->client()->uploadFile($this->bucket,$filePath,$fileName);
+                $ret = $this->client()->uploadFile($this->bucket,$fileName,$filePath);
             }catch(OssException $e)
             {
                 $err = $e->getMessage();
             }
 
-            if ($err !== null) {
-                dd($err);
-            }
-            dd($ret);
+        if ($err !== null) {
+            return [$ret,$err];
+        }
+
+        return $this->putMsg($ret['oss-request-url'],$ret['content-md5'],$err);
     }
+
     public function delete(string $fileName)
     {
-        // TODO: Implement delete() method.
+        $ret = null;
+        $err = null;
+
+        try{
+            $ret = $this->client()->deleteObject($this->bucket,$fileName);
+        }catch (OssException $e)
+        {
+            $err = $e->getMessage();
+        }
+        if ($err !== null) {
+            dd($err);
+        }
+        dd($ret);
     }
+
     public function buildBatchDelete(array $files)
     {
         // TODO: Implement buildBatchDelete() method.
@@ -96,16 +118,11 @@ class Upload implements UploadInterface
     {
         return [
             [
-                'key' => self::explodeName($key),
+                'key' => $key,
                 'hash' => $hash
             ],
             $err
         ];
-    }
-    private static function explodeName($url)
-    {
-        $data = explode('/',$url);
-        return $data[3].'/'.$data[4];
     }
 
     /**

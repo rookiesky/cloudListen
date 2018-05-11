@@ -36,8 +36,7 @@ class Run extends Controller
 //        dd($data);
 
 
-        $file = ROOT_PATH . DIRECTORY_SEPARATOR . 'README.md';
-        $this->CloudUpload()->upload('readme2.md',$file);
+        $this->CloudUpload()->delete('readme2.md');
 
 
     }
@@ -124,8 +123,7 @@ class Run extends Controller
             $fileName = date('Y-m') . '/' . uniqid() . $suffix;
         }
 
-        $result =  $this->CloudUpload()->put($data,$fileName);
-        dd($result);
+        return $this->CloudUpload()->put($data,$fileName);
     }
 
     private function CloudUpload()
