@@ -35,8 +35,11 @@ class Run extends Controller
 //        echo 'time:' . ($stop - $star) . "<hr />";
 //        dd($data);
 
-
-        $this->CloudUpload()->delete('readme2.md');
+        $files = [
+            '2018-05/5af53d1344b69.mp3',
+            '2018-05/5af53da12a9bc.mp3'
+        ];
+        $this->CloudUpload()->buildBatchDelete('readme2.md');
 
 
     }

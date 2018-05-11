@@ -85,6 +85,11 @@ class Upload implements UploadInterface
         return $this->putMsg($ret['oss-request-url'],$ret['content-md5'],$err);
     }
 
+    /**
+     * 删除单个文件
+     * @param string $fileName
+     * @return array
+     */
     public function delete(string $fileName)
     {
         $ret = null;
@@ -97,14 +102,26 @@ class Upload implements UploadInterface
             $err = $e->getMessage();
         }
         if ($err !== null) {
-            dd($err);
+            return [$ret,$err];
         }
-        dd($ret);
+        return $this->putMsg($ret['oss-request-url'],'',$err);
     }
 
     public function buildBatchDelete(array $files)
     {
-        // TODO: Implement buildBatchDelete() method.
+        $ret = null;
+        $err = null;
+
+        try{
+            $ret = $this->client()->deleteObjects($this->bucket,$files);
+        }catch (OssException $e)
+        {
+            $err = $e->getMessage();
+        }
+        if ($err !== null) {
+            return [$ret,$err];
+        }
+        dd($ret);
     }
 
     /**
