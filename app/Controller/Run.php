@@ -32,6 +32,9 @@ class Run extends Controller
         $voice = $this->voice($str);
         $stop = microtime(true);
         echo 'voice time:' . ($stop - $star) . "<hr />";
+        dd($voice);
+
+
         $data = $this->upload($voice);
         $uploadtime = microtime(true);
         echo "time:" . ($uploadtime - $star) ."<hr />";

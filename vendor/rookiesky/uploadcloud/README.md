@@ -4,11 +4,18 @@
 
 ## 使用
 ````
-$uplod = new \Rookie\Cloud\UploadFile();  //实例化
-$uplod->setInfo($accessKey,$secretKey,$backName);  //初始化配置
+
 //$accessKey  公钥
 //$secretKey  私钥
 //$backName  空间名称
+
+try{
+     //$ossUpload = new UploadFile($config['OSS_ACCESSKEY'],$config['OSS_ACCESS_KEY_SECRET'],$config['OSS_BUCKET'],$config['OSS_ENDPOINT'],'oss');
+     $qiniuUpload = new UploadFile($config['QINIU_ACCESSKEY'],$config['QINIU_SECRETKEY'],$config['QINIU_BUCKET']);
+       return $upload->uploadManager();
+    }catch (\Exception $e){
+        return ['error'=>$e->getMessage()];
+    }
 
 //上传文件
 $uplod->upload($file,$newFileName); //$fiel 文件地址，绝对路劲 $newFileName 文件重命名，可空

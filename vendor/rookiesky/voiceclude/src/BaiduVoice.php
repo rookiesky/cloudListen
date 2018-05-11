@@ -99,10 +99,13 @@ class BaiduVoice implements VoiceInterface
      */
     private function put($text,$token,$cuid)
     {
+        $star = microtime(true);
         $pram = 'tex=' . urlencode($text) . '&tok=' . $token . '&cuid=' . $cuid . '&ctp=' . self::$ctp . '&lan=' . self::$lan . '&spd=' . self::$spd . '&pit=' . self::$pit . '&vol=' . self::$vol . '&per=' . self::$per;
         $url = self::APIURL . $pram;
 
-        return HttpRequest::request($url);
+        HttpRequest::request($url);
+        $stop = microtime(true);
+        echo "time:" . ($stop - $star);die;
     }
 
     /**
