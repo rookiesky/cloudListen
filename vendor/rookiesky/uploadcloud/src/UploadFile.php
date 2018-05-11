@@ -34,10 +34,11 @@ class UploadFile
      */
     public function uploadManager()
     {
+        
         if ($this->engine == 'qiniu') {
             return new qiniu($this->accesskey,$this->secretkey,$this->bucket);
         }
-        if ($this->endpoint == 'oss') {
+        if ($this->engine == 'oss') {
             return new oss($this->accesskey,$this->secretkey,$this->bucket,$this->endpoint);
         }
     }
