@@ -119,7 +119,8 @@ class Run extends Controller
             $fileName = date('Y-m') . '/' . uniqid() . $suffix;
         }
 
-        return $this->CloudUpload()->put($data,$fileName);
+        $result =  $this->CloudUpload()->put($data,$fileName);
+        dd($result);
     }
 
     private function CloudUpload()

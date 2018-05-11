@@ -34,7 +34,7 @@ class UploadFile
      */
     public function uploadManager()
     {
-        
+
         if ($this->engine == 'qiniu') {
             return new qiniu($this->accesskey,$this->secretkey,$this->bucket);
         }
