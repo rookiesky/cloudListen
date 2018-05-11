@@ -28,18 +28,14 @@ class Run extends Controller
 //            return $this->putMsg(001,$string[1]);
 //        }
 
-//        $voice = $this->voice($str);
-//
-//        $data = $this->upload($voice);
-//        $stop = microtime(true);
-//        echo 'time:' . ($stop - $star) . "<hr />";
-//        dd($data);
 
-        $files = [
-            '2018-05/5af53d1344b69.mp3',
-            '2018-05/5af53da12a9bc.mp3'
-        ];
-        $this->CloudUpload()->buildBatchDelete($files);
+        $voice = $this->voice($str);
+
+        $data = $this->upload($voice);
+        $stop = microtime(true);
+        echo 'time:' . ($stop - $star) . "<hr />";
+        dd($data);
+
 
 
     }

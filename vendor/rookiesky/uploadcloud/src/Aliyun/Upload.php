@@ -107,6 +107,11 @@ class Upload implements UploadInterface
         return $this->putMsg($ret['oss-request-url'],'',$err);
     }
 
+    /**
+     * 批量删除
+     * @param array $files
+     * @return array
+     */
     public function buildBatchDelete(array $files)
     {
         $ret = null;
@@ -118,10 +123,9 @@ class Upload implements UploadInterface
         {
             $err = $e->getMessage();
         }
-        if ($err !== null) {
-            return [$ret,$err];
-        }
-        dd($ret);
+
+        return [$ret,$err];
+
     }
 
     /**
