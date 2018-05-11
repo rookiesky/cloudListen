@@ -39,7 +39,7 @@ class Run extends Controller
             '2018-05/5af53d1344b69.mp3',
             '2018-05/5af53da12a9bc.mp3'
         ];
-        $this->CloudUpload()->buildBatchDelete('readme2.md');
+        $this->CloudUpload()->buildBatchDelete($files);
 
 
     }
